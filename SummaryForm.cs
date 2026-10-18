@@ -19,8 +19,33 @@ namespace BaobaRidge
 
             //Load animal records from filehandler
             int skippedCount;
-            List<Animal> animals = FileHandler.LoadAnimals(out skippedCount);
+            List<Animal> animals;
 
+            try
+            {
+                animals = FileHandler.LoadAnimals(out skippedCount);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show(
+                    "Access denied. Unable to read the animal records file.",
+                    "File Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+            catch(IOException)
+            {
+                MessageBox.Show(
+                    "Unable to read the animal.txt. See if the file is accessible.",
+                    "File Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+                    
 
             //Extract the ages and recovery scores from the loaded animals
 
