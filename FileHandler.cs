@@ -44,5 +44,67 @@ namespace BaobaRidge
 
 
         }
+
+
+        // Updates an existing animal in animals.txt
+        public static bool UpdateAnimal(Animal updatedAnimal)
+        {
+            string path = Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "animals.txt"
+            );
+
+            if (!File.Exists(path))
+                return false;
+
+            var lines = new List<string>(File.ReadAllLines(path));
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                if (Animal.TryParse(lines[i], out Animal? animal)
+                    && animal != null
+                    && animal.Id.Equals(
+                        updatedAnimal.Id,
+                        StringComparison.OrdinalIgnoreCase))
+                {
+                    lines[i] = updatedAnimal.ToFileLine();
+                    File.WriteAllLines(path, lines);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        // Deletes an existing animal from animals.txt
+        public static bool DeleteAnimal(string animalId)
+        {
+            string path = Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "animals.txt"
+            );
+
+            if (!File.Exists(path))
+                return false;
+
+            var lines = new List<string>(File.ReadAllLines(path));
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                if (Animal.TryParse(lines[i], out Animal? animal)
+                    && animal != null
+                    && animal.Id.Equals(
+                        animalId,
+                        StringComparison.OrdinalIgnoreCase))
+                {
+                    lines.RemoveAt(i);
+                    File.WriteAllLines(path, lines);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
     }
 }
