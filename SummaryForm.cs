@@ -16,9 +16,17 @@ namespace BaobaRidge
         //This method generates the summary report and also does calculations, updates the form and writes the report to a text file.
         private void btnGenerateSummary_Click(object sender, EventArgs e)
         {
-            // sample data - replace with your real data source
-            int[] animalAges = { 4, 3, 12, 6, 8, 5, 9, 2 };
-            int[] recoveryScores = { 85, 22, 51, 78, 92, 45, 35, 57 };
+
+            //Load animal records from filehandler
+            int skippedCount;
+            List<Animal> animals = FileHandler.LoadAnimals(out skippedCount);
+
+
+            //Extract the ages and recovery scores from the loaded animals
+
+            int[] animalAges = animals.Select(a => a.Age).ToArray();
+            int[] recoveryScores = animals.Select(a => a.Score).ToArray();
+
 
             int totalAnimals = animalAges.Length;
 
