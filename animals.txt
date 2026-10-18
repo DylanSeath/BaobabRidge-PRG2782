@@ -1,0 +1,8 @@
+WR-0003|Lerato|Meerkat|2|78|Recovering|Outdoor Enclosure
+WR-0005|Kabelo|African Elephant|8|91|Release-Ready|Pre-Release Camp
+WR-0006|Amara|Pangolin|5|45|Stable|Recovery Ward
+WR-0007|Sipho|Cheetah|6|72|Recovering|Outdoor Enclosure
+WR-0008|Ayanda|Barn Owl|1|88|Release-Ready|Pre-Release Camp
+WR-0009|Bongani|Caracal|4|31|Serious|High-Dependency Ward
+WR-0010|Palesa|Rock Hyrax|3|67|Recovering|Outdoor Enclosure
+WR-0011|Mia|African Wildcat|3|15|Critical|Intensive Care Unit
