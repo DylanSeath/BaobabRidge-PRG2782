@@ -7,6 +7,20 @@ namespace BaobaRidge
         {
             InitializeComponent();
             repository = new AnimalRepo();
+
+            // show all saved animals when the form opens
+            RefreshGrid();
+        }
+
+        private void RefreshGrid()
+        {
+            // get the animals saved in the text file
+            int skippedCount;
+            List<Animal> animals = FileHandler.LoadAnimals(out skippedCount);
+
+            // clear the grid before loading the animals again
+            dgvAnimals.DataSource = null;
+            dgvAnimals.DataSource = animals;
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -186,13 +200,185 @@ namespace BaobaRidge
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            //  Add update logic
+
+
+            // get the information from the textboxes
+            string id = txtAnimalId.Text.Trim().ToUpper();
+            string name = txtName.Text.Trim();
+            string species = txtSpecies.Text.Trim();
+
+            // check that all the fields have information
+            if (id == "" || name == "" || species == "" ||
+                txtAge.Text.Trim() == "" || txtScore.Text.Trim() == "")
+            {
+                MessageBox.Show("Please fill in all the fields.");
+                return;
+            }
+
+            // check if the animal ID is in the correct format
+            if (id.Length != 7 || !id.StartsWith("WR-"))
+            {
+                MessageBox.Show("Animal ID must be WR- followed by 4 numbers.");
+                return;
+            }
+
+            // make sure the last 4 characters are numbers
+            if (!int.TryParse(id.Substring(3), out int idNumber))
+            {
+                MessageBox.Show("Animal ID must contain 4 numbers.");
+                return;
+            }
+
+            // check if the age is a valid number
+            if (!int.TryParse(txtAge.Text, out int age))
+            {
+                MessageBox.Show("Please enter a valid age.");
+                return;
+            }
+
+            if (age < 0 || age > 100)
+            {
+                MessageBox.Show("Age must be between 0 and 100.");
+                return;
+            }
+
+            // check if the recovery score is a valid number
+            if (!int.TryParse(txtScore.Text, out int score))
+            {
+                MessageBox.Show("Please enter a valid recovery score.");
+                return;
+            }
+
+            if (score < 0 || score > 100)
+            {
+                MessageBox.Show("Recovery score must be between 0 and 100.");
+                return;
+            }
+
+            // calculate the status and housing unit using the score
+            var classification = AnimalStatus.GetClassification(score);
+
+            // put the updated information into an animal object
+            Animal updatedAnimal = new Animal
+            {
+                Id = id,
+                Name = name,
+                Species = species,
+                Age = age,
+                Score = score,
+                Status = classification.Status,
+                HousingUnit = classification.HousingUnit
+            };
+
+            // ask the user before saving changes
+            DialogResult answer = MessageBox.Show(
+                "Are you sure you want to update this animal?",
+                "Confirm Update",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (answer == DialogResult.No)
+            {
+                return;
+            }
+
+            try
+            {
+                // send the animal to the repository to update the file
+                bool updated = repository.UpdateAnimal(updatedAnimal);
+
+                if (updated)
+                {
+                    MessageBox.Show("Animal updated successfully!");
+
+                    // show the latest information in the grid
+                    RefreshGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Animal not found. No changes were saved.");
+                }
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("Unable to update the animals file.");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("Access denied. Unable to save changes.");
+            }
         }
+
+        
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //  Add delete logic
+
+
+
+            // get the animal ID from the textbox
+            string animalId = txtAnimalId.Text.Trim().ToUpper();
+
+            // check if the user entered an ID
+            if (animalId == "")
+            {
+                MessageBox.Show("Please enter an Animal ID to delete.");
+                return;
+            }
+
+            // check if the ID is in the correct format
+            int animalNumber;
+
+            if (!animalId.StartsWith("WR-") ||
+                animalId.Length != 7 ||
+                !int.TryParse(animalId.Substring(3), out animalNumber))
+            {
+                MessageBox.Show("Animal ID must be in the format WR-0001.");
+                return;
+            }
+
+            // ask the user to confirm before deleting
+            if (MessageBox.Show("Are you sure you want to delete this animal?",
+                "Delete Animal", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+
+            try
+            {
+                // delete the animal using its ID
+                bool deleted = repository.DeleteAnimal(animalId);
+
+                if (deleted)
+                {
+                    MessageBox.Show("Animal deleted successfully!");
+
+                    // clear all the textboxes
+                    txtAnimalId.Clear();
+                    txtName.Clear();
+                    txtSpecies.Clear();
+                    txtAge.Clear();
+                    txtScore.Clear();
+
+                    // update the grid to show the remaining animals
+                    RefreshGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Animal not found.");
+                }
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("Unable to delete the animal from the file.");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("Access denied. Unable to delete the animal.");
+            }
         }
+
+        
 
         private void btnViewSummary_Click(object sender, EventArgs e)
         {

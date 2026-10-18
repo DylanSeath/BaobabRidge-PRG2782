@@ -62,5 +62,106 @@ namespace BaobaRidge
             }
         }
 
+
+        public bool UpdateAnimal(Animal updatedAnimal)
+        {
+            string path = "animals.txt";
+
+            // get the animals that are already saved
+            int skippedCount;
+            List<Animal> animals = FileHandler.LoadAnimals(out skippedCount);
+
+            // dont overwrite the file if some records could not be loaded
+            if (skippedCount > 0)
+            {
+                throw new IOException("Some animal records could not be loaded.");
+            }
+
+            bool animalFound = false;
+
+            // go through the list to find the animal
+            foreach (Animal animal in animals)
+            {
+                if (animal.Id == updatedAnimal.Id)
+                {
+                    // change the old information to the new information
+                    animal.Name = updatedAnimal.Name;
+                    animal.Species = updatedAnimal.Species;
+                    animal.Age = updatedAnimal.Age;
+                    animal.Score = updatedAnimal.Score;
+                    animal.Status = updatedAnimal.Status;
+                    animal.HousingUnit = updatedAnimal.HousingUnit;
+
+                    animalFound = true;
+                    break;
+                }
+            }
+
+            // only save if the animal was found
+            if (animalFound)
+            {
+                List<string> lines = new List<string>();
+
+                // change the animal objects back into text
+                foreach (Animal animal in animals)
+                {
+                    lines.Add(animal.ToFileLine());
+                }
+
+                // save the updated information into the file
+                File.WriteAllLines(path, lines);
+            }
+
+            return animalFound;
+        }
+
+
+        public bool DeleteAnimal(string animalId)
+        {
+            string path = "animals.txt";
+
+            // get all the animals saved in the file
+            int skippedCount;
+            List<Animal> animals = FileHandler.LoadAnimals(out skippedCount);
+
+            // dont delete anything if some records could not be loaded
+            if (skippedCount > 0)
+            {
+                throw new IOException("Some animal records could not be loaded.");
+            }
+
+            bool animalFound = false;
+
+            // go through the animals to find the matching ID
+            for (int i = 0; i < animals.Count; i++)
+            {
+                if (animals[i].Id == animalId)
+                {
+                    // remove the animal from the list
+                    animals.RemoveAt(i);
+                    animalFound = true;
+                    break;
+                }
+            }
+
+            // only save the file if the animal was found
+            if (animalFound)
+            {
+                List<string> lines = new List<string>();
+
+                // change the remaining animals back into text
+                foreach (Animal animal in animals)
+                {
+                    lines.Add(animal.ToFileLine());
+                }
+
+                File.WriteAllLines(path, lines);
+            }
+
+            return animalFound;
+        }
+
+
+
     }
 }
