@@ -10,7 +10,34 @@ namespace BaobaRidge
         // loads animals from file and displays in a grid
         public void RefreshGrid(bool showSkippedMessage = false)
         {
-            var animals = FileHandler.LoadAnimals(out int skippedCount);
+
+            List<Animal> animals;
+            int skippedCount;
+
+            try
+            {
+                animals = FileHandler.LoadAnimals(out skippedCount);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show(
+                    "Access denied. Unable to read the animal.txt.",
+                    "File Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+            catch (IOException)
+            {
+                MessageBox.Show(
+                    "Unable to read the animal.txt. See if the file is accessible.",
+                    "File Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
 
             dgvAnimals.DataSource = null;
             dgvAnimals.DataSource = animals;
@@ -34,6 +61,32 @@ namespace BaobaRidge
         private void Form1_Load(object sender, EventArgs e)
         {
             RefreshGrid(true);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnViewSummary_Click(object sender, EventArgs e)
+        {
+            SummaryForm summaryForm = new SummaryForm();
+            summaryForm.ShowDialog();
         }
     }
 }

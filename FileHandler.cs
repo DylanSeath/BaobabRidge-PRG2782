@@ -31,11 +31,13 @@ namespace BaobaRidge
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("Program isn't alloowed to open file");   //cannot open file
+
+                throw;
             }
             catch (IOException)
             {
-                MessageBox.Show("File may be open in another program");  //eaither file is open or used somewhere else
+
+                throw;
             }
 
             return animals;
