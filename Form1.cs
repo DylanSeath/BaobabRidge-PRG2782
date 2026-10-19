@@ -101,8 +101,8 @@ namespace BaobaRidge
 
                 
                 MessageBox.Show($"Animal added successfully!\nStatus: {status}\nHousing Unit: {housingUnit}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RefreshGrid();
 
-                
                 txtAnimalId.Clear();
                 txtName.Clear();
                 txtSpecies.Clear();
@@ -368,10 +368,14 @@ namespace BaobaRidge
                     MessageBox.Show("Animal not found.");
                 }
             }
-            catch (IOException)
+            catch (IOException ex)
             {
-                MessageBox.Show("Unable to delete the animal from the file.");
+                MessageBox.Show(
+                    "Unable to delete the animal from the file.\n\n" + ex.Message);
             }
+
+
+
             catch (UnauthorizedAccessException)
             {
                 MessageBox.Show("Access denied. Unable to delete the animal.");
@@ -383,6 +387,8 @@ namespace BaobaRidge
         private void btnViewSummary_Click(object sender, EventArgs e)
         {
             //  Open summary form
+            SummaryForm summaryForm = new SummaryForm();
+            summaryForm.ShowDialog();
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -44,7 +44,11 @@
             btnUpdate = new Button();
             btnDelete = new Button();
             btnViewSummary = new Button();
+            pnlHeader = new Panel();
+            lblHeaderSubtitle = new Label();
+            lblHeaderTitle = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvAnimals).BeginInit();
+            pnlHeader.SuspendLayout();
             SuspendLayout();
             // 
             // dgvAnimals
@@ -53,7 +57,7 @@
             dgvAnimals.AllowUserToDeleteRows = false;
             dgvAnimals.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAnimals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAnimals.Location = new Point(34, 427);
+            dgvAnimals.Location = new Point(15, 425);
             dgvAnimals.Name = "dgvAnimals";
             dgvAnimals.ReadOnly = true;
             dgvAnimals.RowHeadersWidth = 51;
@@ -64,15 +68,16 @@
             // lblAnimalId
             // 
             lblAnimalId.AutoSize = true;
-            lblAnimalId.Location = new Point(34, 53);
+            lblAnimalId.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAnimalId.Location = new Point(15, 148);
             lblAnimalId.Name = "lblAnimalId";
-            lblAnimalId.Size = new Size(78, 20);
+            lblAnimalId.Size = new Size(89, 23);
             lblAnimalId.TabIndex = 1;
             lblAnimalId.Text = "Animal ID:";
             // 
             // txtAnimalId
             // 
-            txtAnimalId.Location = new Point(34, 87);
+            txtAnimalId.Location = new Point(15, 172);
             txtAnimalId.Margin = new Padding(3, 4, 3, 4);
             txtAnimalId.Name = "txtAnimalId";
             txtAnimalId.Size = new Size(217, 27);
@@ -81,15 +86,16 @@
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new Point(297, 53);
+            lblName.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblName.Location = new Point(263, 148);
             lblName.Name = "lblName";
-            lblName.Size = new Size(52, 20);
+            lblName.Size = new Size(60, 23);
             lblName.TabIndex = 3;
             lblName.Text = "Name:";
             // 
             // txtName
             // 
-            txtName.Location = new Point(297, 87);
+            txtName.Location = new Point(263, 172);
             txtName.Margin = new Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
             txtName.Size = new Size(217, 27);
@@ -98,15 +104,16 @@
             // lblSpecies
             // 
             lblSpecies.AutoSize = true;
-            lblSpecies.Location = new Point(560, 53);
+            lblSpecies.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSpecies.Location = new Point(510, 148);
             lblSpecies.Name = "lblSpecies";
-            lblSpecies.Size = new Size(62, 20);
+            lblSpecies.Size = new Size(70, 23);
             lblSpecies.TabIndex = 5;
             lblSpecies.Text = "Species:";
             // 
             // txtSpecies
             // 
-            txtSpecies.Location = new Point(560, 87);
+            txtSpecies.Location = new Point(510, 172);
             txtSpecies.Margin = new Padding(3, 4, 3, 4);
             txtSpecies.Name = "txtSpecies";
             txtSpecies.Size = new Size(217, 27);
@@ -115,15 +122,16 @@
             // lblAge
             // 
             lblAge.AutoSize = true;
-            lblAge.Location = new Point(34, 153);
+            lblAge.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAge.Location = new Point(15, 203);
             lblAge.Name = "lblAge";
-            lblAge.Size = new Size(39, 20);
+            lblAge.Size = new Size(44, 23);
             lblAge.TabIndex = 7;
             lblAge.Text = "Age:";
             // 
             // txtAge
             // 
-            txtAge.Location = new Point(34, 187);
+            txtAge.Location = new Point(15, 227);
             txtAge.Margin = new Padding(3, 4, 3, 4);
             txtAge.Name = "txtAge";
             txtAge.Size = new Size(217, 27);
@@ -131,7 +139,7 @@
             // 
             // txtScore
             // 
-            txtScore.Location = new Point(297, 187);
+            txtScore.Location = new Point(263, 227);
             txtScore.Margin = new Padding(3, 4, 3, 4);
             txtScore.Name = "txtScore";
             txtScore.Size = new Size(217, 27);
@@ -140,93 +148,145 @@
             // lblScore
             // 
             lblScore.AutoSize = true;
-            lblScore.Location = new Point(297, 153);
+            lblScore.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblScore.Location = new Point(263, 203);
             lblScore.Name = "lblScore";
-            lblScore.Size = new Size(113, 20);
+            lblScore.Size = new Size(129, 23);
             lblScore.TabIndex = 10;
             lblScore.Text = "Recovery Score:";
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(34, 280);
+            btnAdd.BackColor = Color.MediumSeaGreen;
+            btnAdd.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAdd.ForeColor = Color.White;
+            btnAdd.Location = new Point(15, 280);
             btnAdd.Margin = new Padding(3, 4, 3, 4);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(217, 60);
             btnAdd.TabIndex = 11;
             btnAdd.Text = "ADD ANIMAL";
-            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(297, 280);
+            btnSearch.BackColor = Color.MediumSeaGreen;
+            btnSearch.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Location = new Point(263, 280);
             btnSearch.Margin = new Padding(3, 4, 3, 4);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(217, 60);
             btnSearch.TabIndex = 12;
             btnSearch.Text = "SEARCH";
-            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(560, 280);
+            btnUpdate.BackColor = Color.MediumSeaGreen;
+            btnUpdate.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnUpdate.ForeColor = Color.White;
+            btnUpdate.Location = new Point(510, 280);
             btnUpdate.Margin = new Padding(3, 4, 3, 4);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(217, 60);
             btnUpdate.TabIndex = 13;
             btnUpdate.Text = "SAVE CHANGES";
-            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.UseVisualStyleBackColor = false;
             btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(823, 280);
+            btnDelete.BackColor = Color.FromArgb(255, 128, 128);
+            btnDelete.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.Location = new Point(751, 280);
             btnDelete.Margin = new Padding(3, 4, 3, 4);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(217, 60);
             btnDelete.TabIndex = 14;
             btnDelete.Text = "DELETE ANIMAL";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // btnViewSummary
             // 
-            btnViewSummary.Location = new Point(34, 721);
+            btnViewSummary.BackColor = SystemColors.Highlight;
+            btnViewSummary.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnViewSummary.ForeColor = Color.White;
+            btnViewSummary.Location = new Point(15, 720);
             btnViewSummary.Margin = new Padding(3, 4, 3, 4);
             btnViewSummary.Name = "btnViewSummary";
             btnViewSummary.Size = new Size(1006, 65);
             btnViewSummary.TabIndex = 15;
             btnViewSummary.Text = "VIEW SUMMARY REPORT";
-            btnViewSummary.UseVisualStyleBackColor = true;
+            btnViewSummary.UseVisualStyleBackColor = false;
             btnViewSummary.Click += btnViewSummary_Click;
+            // 
+            // pnlHeader
+            // 
+            pnlHeader.BackColor = Color.Navy;
+            pnlHeader.Controls.Add(lblHeaderSubtitle);
+            pnlHeader.Controls.Add(lblHeaderTitle);
+            pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Size = new Size(1052, 127);
+            pnlHeader.TabIndex = 16;
+            // 
+            // lblHeaderSubtitle
+            // 
+            lblHeaderSubtitle.AutoSize = true;
+            lblHeaderSubtitle.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblHeaderSubtitle.ForeColor = Color.White;
+            lblHeaderSubtitle.Location = new Point(32, 75);
+            lblHeaderSubtitle.Name = "lblHeaderSubtitle";
+            lblHeaderSubtitle.Size = new Size(365, 25);
+            lblHeaderSubtitle.TabIndex = 1;
+            lblHeaderSubtitle.Text = "Wildlife Rehabilitation - Animal Management";
+            // 
+            // lblHeaderTitle
+            // 
+            lblHeaderTitle.AutoSize = true;
+            lblHeaderTitle.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHeaderTitle.ForeColor = Color.White;
+            lblHeaderTitle.Location = new Point(30, 20);
+            lblHeaderTitle.Name = "lblHeaderTitle";
+            lblHeaderTitle.Size = new Size(292, 50);
+            lblHeaderTitle.TabIndex = 0;
+            lblHeaderTitle.Text = "BAOBAB RIDGE";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.InactiveCaption;
             ClientSize = new Size(1056, 789);
+            Controls.Add(txtAge);
+            Controls.Add(lblAge);
+            Controls.Add(txtScore);
+            Controls.Add(txtSpecies);
+            Controls.Add(lblScore);
+            Controls.Add(txtName);
+            Controls.Add(txtAnimalId);
+            Controls.Add(lblAnimalId);
+            Controls.Add(lblName);
+            Controls.Add(lblSpecies);
+            Controls.Add(pnlHeader);
             Controls.Add(btnViewSummary);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
             Controls.Add(btnSearch);
             Controls.Add(btnAdd);
-            Controls.Add(lblScore);
-            Controls.Add(txtScore);
-            Controls.Add(txtAge);
-            Controls.Add(lblAge);
-            Controls.Add(txtSpecies);
-            Controls.Add(lblSpecies);
-            Controls.Add(txtName);
-            Controls.Add(lblName);
-            Controls.Add(txtAnimalId);
-            Controls.Add(lblAnimalId);
             Controls.Add(dgvAnimals);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Baobab Ridge - Animal Management";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dgvAnimals).EndInit();
+            pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -249,6 +309,9 @@
         private Button btnUpdate;
         private Button btnDelete;
         private Button btnViewSummary;
+        private Panel pnlHeader;
+        private Label lblHeaderTitle;
+        private Label lblHeaderSubtitle;
     }
 }
 
