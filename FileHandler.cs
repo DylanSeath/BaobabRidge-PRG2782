@@ -25,8 +25,15 @@ namespace BaobaRidge
                 {
                     if (string.IsNullOrWhiteSpace(line)) continue;  //no blank lines, blnk lines are skipped and aren't counted
 
-                    if (Animal.TryParse(line, out Animal? animal) && animal != null) animals.Add(animal);
-                    else skippedCount++;
+                    if (Animal.TryParse(line, out Animal? animal) && animal != null)
+                    {
+                        animals.Add(animal);
+                    }
+                    else
+                    {
+                        skippedCount++;
+
+                    }
                 }
             }
             catch (UnauthorizedAccessException)

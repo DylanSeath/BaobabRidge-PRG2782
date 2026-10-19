@@ -118,7 +118,8 @@ namespace BaobaRidge
 
         public bool DeleteAnimal(string animalId)
         {
-            string path = "animals.txt";
+
+         string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"animals.txt"); 
 
             // get all the animals saved in the file
             int skippedCount;
