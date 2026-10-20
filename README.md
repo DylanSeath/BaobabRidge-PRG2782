@@ -95,3 +95,32 @@ Summary Reporting:
 - The system does not use a database.
 - Multiple users cannot edit records simultaneously.
 - The application is designed for small-scale wildlife rehabilitation management.
+
+  //Testing and Verification
+
+The Baobab Ridge Wildlife Rehabilitation Records System was tested to ensure that the main functionalities operate correctly and that animal records are managed accurately.
+
+1. View Animals Testing
+- Tested displaying registered animals in the DataGridView.
+- Checked that animal information loads correctly from the text file.
+- Verified that the DataGridView refreshes after changes are made.
+
+2. Search Animal Testing
+- Tested searching for animals using their unique Animal IDs.
+- Verified that matching animal information is displayed correctly.
+- Checked that the system handles Animal IDs that do not exist.
+
+3. Update Animal Testing
+- Tested updating existing animal information.
+- Verified that updated information is saved to the text file.
+- Checked that the DataGridView displays the updated information.
+- Verified that other animal records remain unchanged.
+
+4. Delete Animal Testing
+- Tested deleting existing animal records.
+- Verified that a confirmation message appears before deletion.
+- Checked that selecting No cancels the deletion.
+- Verified that deleted records are removed from the text file.
+- Checked that the DataGridView refreshes after deletion.
+
+
