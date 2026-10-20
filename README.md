@@ -96,6 +96,9 @@ Summary Reporting:
 - Multiple users cannot edit records simultaneously.
 - The application is designed for small-scale wildlife rehabilitation management.
 
+
+
+
   //Testing and Verification
 
 The Baobab Ridge Wildlife Rehabilitation Records System was tested to ensure that the main functionalities operate correctly and that animal records are managed accurately.
@@ -123,4 +126,22 @@ The Baobab Ridge Wildlife Rehabilitation Records System was tested to ensure tha
 - Verified that deleted records are removed from the text file.
 - Checked that the DataGridView refreshes after deletion.
 
+
+5. Add Animal Testing
+- Tested that the animals are added to the textfile.
+- Ensured that fields verfication are working correctly.
+- Verified that the DataGridView refreshes after adding a new animal.
+- Checked that duplicate Animal IDs are not allowed.
+
+6. Summary Report Testing
+- Tested generating a summary report of registered animals.
+- Verified that the total number of animals are calculated correctly.
+- Checked that the average age and recovery score are calculated accurately.
+- Verified that the number of animals in each recovery category are displayed correctly.
+
+7. Data Handling Testing
+- Tested that animal records are saved to the text file correctly.
+- Verified that the text file is updated after adding, updating, or deleting records.
+- Checked that the system handles file read/write errors correctly.
+- Verified that the DataGridView displays the correct information after file operations.
 
