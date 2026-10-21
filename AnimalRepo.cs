@@ -39,7 +39,7 @@ namespace BaobaRidge
             }
             catch (Exception)
             {
-                
+                MessageBox.Show("An error occurred while checking for unique ID. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return true;
         }
